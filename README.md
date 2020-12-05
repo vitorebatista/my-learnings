@@ -1,2 +1,2 @@
-# my-tests
-Repository with my basic tests in some languages, frameworks, etc
+# my-learnings
+Repository with my basic learnings in some languages, frameworks, etc
