@@ -1,0 +1,46 @@
+(executable
+    (name test)
+    (flags :standard -w -26-27)
+    (libraries
+        core)
+    (modules test)
+    (preprocess (pps
+        ppx_deriving.show)))
+
+(executable
+    (name factorial)
+    (flags :standard -w -26-27)
+    (libraries
+        core)
+    (modules factorial)
+    (preprocess (pps
+        ppx_deriving.show)))
+
+
+(executable
+    (name fibonacci)
+    (flags :standard -w -26-27)
+    (libraries
+        core)
+    (modules fibonacci)
+    (preprocess (pps
+        ppx_deriving.show)))
+
+(executable
+    (name sigma)
+    (flags :standard -w -26-27)
+    (libraries
+        core)
+    (modules sigma)
+    (preprocess (pps
+        ppx_deriving.show)))
+
+
+(executable
+    (name heapsort)
+    (flags :standard -w -26-27)
+    (libraries
+        core)
+    (modules heapsort)
+    (preprocess (pps
+        ppx_deriving.show)))
