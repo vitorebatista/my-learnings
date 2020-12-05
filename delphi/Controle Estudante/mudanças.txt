@@ -1,0 +1,2 @@
+1 - shortdateformat:='dd/mm/yy';
+    oncreate da form frm_tarefas;

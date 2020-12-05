@@ -1,0 +1,99 @@
+Passos para criar o Visualizador de Imagens:
+1. Acesse o menu File e clique em New Application para criar um novo programa
+2. Insira os seguintes componentes na tela
+a) Edit da paleta Standard
+b)FileListBox da paleta Win 3.1
+c)FilterComboBox da paleta Win 3.1
+d)DriveComboBox da paleta Win 3.1
+e)DirectoryListBox da paleta Win 3.1
+f)Label da paleta Standard na posição da Form logo acima do DirectoryListBox
+3. Selecione o objeto DriveComboBox1 e altere a propriedade DirList para DirectoryListBox1
+4. Selecione o objeto DirectoryListBox1 e altere a propriedade  FileList para FileListBox1 e,
+    a propriedade DirLabel para Label1
+5. Selecione o objeto FileListBox1 e altere a propriedade FileEdit para Edit1
+6. Selecione o objeto Edit1 e altere a propriedade ReadOnly para true
+7. Selecione o objeto FilterComboBox1 e altere a propriedade  FileList para FileListBox1e,
+ altere a propriedade  Filter para:
+    Imagens (*.bmp)        	e coloque *.bmp no Filter
+    Icones (*.ico) 	  	e coloque *.ico no Filter
+    Todos os Arquivos (*.*)	e coloque *.* no Filter
+8. Insira o componente Label da paleta Standard e mude a propriedade Caption para "Nome do Arquivo"
+9. Insira o componente Label da paleta Standard e mude a propriedade Caption para "Arquivos do Tipo"
+10. Insira o componente Label da paleta Standard e mude a propriedade Caption para "Drive:"
+11. Posicione os labels nos respectivos lugares na Form
+12. Selecione a Form e mude a propriedade Caption para Visualizador de Imagens
+13. Insira o componente Image da paleta Additional e altere a propriedade Center para True
+14. De um duplo clique no objeto Edit1 e insira o seguinte código pascal nele:
+
+procedure TForm1.Edit1Change(Sender: TObject);
+begin
+  if ((extractfileext(edit1.text) = '.BMP')or(extractfileext(edit1.text) = '.ICO'))
+     and (extractfilename(edit1.text) <> '*') then
+     image1.picture.loadfromfile(edit1.text)
+end;
+
+15. Insira o componente CheckBox da paleta Standard e mude a propriedade Caption para "Esticar Imagem"
+      Em seguida de um duplo clique nele e insira o seguinte código nele:
+
+procedure TForm1.CheckBox1Click(Sender: TObject);
+begin
+    if checkbox1.checked = true then
+       image1.stretch := true
+    else
+       image1.stretch := false;
+end;
+
+16. De um duplo clique no objeto FileListBox1 e insira o seguinte código nele:
+
+procedure TForm1.FileListBox1Change(Sender: TObject);
+begin
+   if filelistbox1.items.count = 0 then
+      checkbox1.enabled := false
+   else checkbox1.enabled := true;
+end;
+
+17. Insira mais um componente Checkbox da paleta Standard e mude a propriedade Caption do mesmo para "Slide Show"
+18. Insira um componente SpinEdit da paleta Samples e mude a propriedade MinValue para 1, MaxValue para 20, Enabled para False e,Value para 2
+19. Insira um componente Timer da paleta System e mude a propriedade Enabled para False e, a propriedade Interval para 200
+20. De um duplo clique no Checkbox2  e insira o seguinte código nele:
+procedure TForm1.CheckBox2Click(Sender: TObject);
+begin
+   if checkbox2.checked = true then
+   begin
+      spinedit1.enabled := true;
+      timer1.enabled := true;
+   end
+   else begin
+      spinedit1.enabled := false;
+      timer1.enabled := false;
+   end;
+end;
+
+21. De um duplo click no objeto SpinEdit1 e insira o seguinte código nele:
+
+procedure TForm1.SpinEdit1Change(Sender: TObject);
+begin
+  timer1.interval := spinedit1.value * 100;
+end;
+
+22. De um duplo click no objeto Timer1 e insira o seguinte código nele:
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+  if FileListbox1.items.count <> 0 then
+  begin
+   FileListBox1.itemindex := FileListBox1.Itemindex + 1;
+   image1.picture.loadfromfile(FileListBox1.filename);
+  end;
+  if filelistbox1.items.count = filelistbox1.itemindex + 1 then
+     filelistbox1.itemindex := 0;
+end;
+
+23. Melhore a interface 
+ 
+
+
+
+
+
+
